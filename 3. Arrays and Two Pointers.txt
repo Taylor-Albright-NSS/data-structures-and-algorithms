@@ -1,0 +1,93 @@
+INTRODUCTION TO ARRAYS
+______________________
+
+Arrays: Lightning-fast access by position, simple to understand	Slow to insert orders in the middle	Perfect for order queues.
+Lists (Linked): Easy to insert priority orders. Slow to find "What's the 5th order?" Good for constantly changing menus.
+Hash Tables: Super fast to find specific orders	No natural ordering	Great for customer preferences.
+Trees: Great for hierarchical data but complex to manage. Useful for menu categories.
+
+arr.push() = Array method that inserts an element at the end of the array.
+ -> Constant O(1) time complexity because the only thing that changes is the end of the array. No shifting of other elements occurs.
+
+arr.pop() = Array method that removes an element at the end of the array. 
+ -> Constant O(1) time complexity because the only thing that changes is the end of the array. No shifting of other elements occurs. 
+
+arr.unshift() = Array method that inserts an element at the beginning of the array. 
+ -> Linear O(n) time complexity because all the elements to the right of the inserted element must have their indexes changed.
+
+arr.shift() = Array method that removes an element from the beginning of the array. O(n)
+ -> Linear O(n) time complexity because all the elements to the right of the inserted element must have their indexes changed.
+
+arr.splice(5, 1) = Array method that removes an element from a specified index (can remove more depending on the second argument).
+ -> Linear O(n) time complexity as long as it removes an element NOT from the end.
+
+arr.indexOf(element) = Array method that finds the index of the specified element.
+ -> Linear O(n) time complexity because it has to iterate over the array until it finds the element.
+
+
+**CORE OPERATIONS [Didn't include notes as I am familiar with everything discussed]**
+_____________________________________________________________________________________
+
+
+
+
+ARRAY METHODS
+_____________
+
+.map() = Used to transform an array. You can make changes to each item in an array or to each item based on a condition
+.filter() = Used to filter elements based on a condition. If filter conditional evaluates to true, it includes that element in the filtered array. Otherwise, it doesn't
+.forEach() = Iterates over each element in an array. It does not return a new array, nor does it transform anything like .map()
+.reduce() = Takes data and reduces it down to a single value
+    Usage: arr.reduce((acc, element) => acc + element, 0)
+
+.splice(start, deleteCount?, ...itemsToAdd) = Modifies original array while creating a new array based on the original modifications. 
+.slice(start, end?) = Similar to .splice(), but does not modify the original array. However, it's parameters act differently than .splice()
+    If start is specified WITHOUT end, it will include all the elements in the array starting at the start index. 
+        Examples: arr.slice(1) would include every element in the array excluding the element at index 0. arr.slice(2) would include every element in the array exluding the elemnts at index 0 and 1, etc
+        
+    Usage: arr.slice(0, 4) | This would create a new array with the first 4 elements of the array it sliced. Good for limiting the size of the array if those specifications are included
+
+
+Array method reference:
+class ArrayMethodSelector {
+    static chooseMethod(task, dataSize, performanceNeeds) {
+        if (task === "add_to_end" || task === "remove_from_end") {
+            return "Use push()/pop() - O(1) operations, always fast";
+        }
+        
+        if (task === "transform_all_elements") {
+            return "Use map() - O(n) but creates clean new data";
+        }
+        
+        if (task === "select_subset") {
+            return "Use filter() - O(n) but perfect for criteria-based selection";
+        }
+        
+        if (task === "calculate_single_value") {
+            return "Use reduce() - O(n) but incredibly powerful for aggregation";
+        }
+        
+        if (task === "process_with_side_effects") {
+            return "Use forEach() - O(n) and perfect for logging/updating";
+        }
+        
+        if (task === "extract_range") {
+            return "Use slice() - O(k) and non-destructive";
+        }
+        
+        if (task === "complex_editing") {
+            return "Use splice() - O(n) but surgical precision";
+        }
+        
+        if (task === "multiple_operations") {
+            return "Use method chaining - readable and powerful";
+        }
+        
+        return "Consider the performance needs and data flow";
+    }
+}
+
+
+
+CORE OPERATIONS: ADD, REMOVE, UPDATE, ACCESS
+____________________________________________

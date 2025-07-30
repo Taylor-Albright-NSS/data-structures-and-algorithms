@@ -1,0 +1,100 @@
+WHAT IS AN ALGORITHM
+____________________
+
+Examples of Common Algorithms
+
+Sorting algorithms: Bubble sort, merge sort, quicksort
+Search algorithms: Linear search, binary search
+Graph algorithms: Breadth-first search, depth-first search, Dijkstra's algorithm
+Dynamic programming algorithms: Fibonacci sequence, knapsack problem
+
+
+
+
+WHAT IS A DATA STRUCTURE
+________________________
+
+Primitive Data Structures:
+Integers
+Floating-point numbers
+Characters
+Boolean values
+
+Linear Data Structures:
+Arrays
+Linked Lists
+Stacks
+Queues
+
+Non-Linear Data Structures:
+Trees
+Graphs
+Hash Tables
+Heaps
+
+
+
+Link List
+Stack: LIFO
+Que: FIFO
+Heap: Min Heap
+Heap: Max Heap
+Hash Map
+Binary Search Tree
+Sets
+
+
+
+
+
+FIVE STEP PROBLEM SOLVING PROCESS
+_________________________________
+
+1. Clarify
+2. Plan
+3. Implement
+4. Test
+5. Optimize
+
+
+
+
+BIG-O NOTATION: TIME AND SPACE COMPLEXITY
+_________________________________________
+
+Time Complexity = The number of operations an algorithm performs relative to input size n.
+
+Space Complexity = How much memory an algorithm uses as input size increases. In otherwords, the amount of 1s and 0s needed to store the information in memory.
+
+Big-O in order of most efficient to least efficient:
+
+O(1) = Constant
+O(log n) = Logarithmic
+O(n) = Linear
+O(n^2) = Quadratic
+O(2^n) = Exponential
+
+
+
+
+GLOSSARY
+________
+
+Algorithm = A step-by-step procedure or set of rules designed to perform a specific task or solve a particular problem. Think of it as a recipe for solving computational problems.	1
+Data Structure = A specialized format for organizing, processing, retrieving and storing data efficiently. Different structures (like arrays, lists, trees) are optimized for different types of operations.	1
+Time Complexity = A measure of the amount of time an algorithm takes to complete as a function of the length of the input.	1
+Space Complexity = A measure of the amount of memory an algorithm uses as a function of the length of the input.	1
+Big O Notation = A mathematical notation that describes the limiting behavior of a function when the argument tends towards a particular value or infinity. Used to classify algorithms according to their growth rates.	1
+O(1) = Constant time complexity - the operation takes the same amount of time regardless of the input size.	1
+O(log n) = Logarithmic time complexity - the operation's time increases logarithmically as the input size grows.	1
+O(n) = Linear time complexity - the operation's time increases linearly with the input size.	1
+O(n log n) = Linearithmic time complexity - common in efficient sorting algorithms like merge sort and heap sort.	1
+O(n²) = Quadratic time complexity - often seen in algorithms with nested iterations over the data set.	1
+Primitive Operations = Basic operations that a computer performs during algorithm execution, such as assignment, arithmetic, comparison, and array access. These are the building blocks we count when analyzing time complexity.	1
+Polynomial Complexity = A type of time or space complexity where the algorithm runs in O(n^c) time, where n is the input size and c is some constant. Examples include O(n²) and O(n³).	1
+In-Place Algorithm = An algorithm that modifies the input data structure directly without using extra memory proportional to the input size. It has O(1) space complexity.	1
+Two-Pointer Technique = A programming technique that uses two pointers (usually at different positions) to traverse a data structure, often used to solve array problems efficiently.	1
+Problem-Solving Process = A structured 5-step approach to tackling algorithmic problems: 1) Clarify the problem, 2) Plan the solution, 3) Implement the code, 4) Test the solution, 5) Optimize for efficiency.	1
+Worst Case = The scenario where an algorithm takes the maximum possible time or space to complete, typically what Big O notation describes.	1
+Best Case = The scenario where an algorithm performs optimally, taking the minimum possible time or space to complete.	1
+Average Case = The expected performance of an algorithm across all possible inputs, representing typical real-world behavior.

@@ -1,0 +1,103 @@
+Webpage reference: https://nss-workshops.github.io/data-structures-and-algorithms/polynomials
+
+*In software engineering, the most common relationship we describe is the relationship between an input size and the number of steps it takes to complete a task.*
+
+POLYNOMIALS
+___________
+
+1. If a term has multiple exponents, you want to drop the lowest ones and keep the highest.
+    Example: n^2 + n^3 = x
+    - You would drop n^2 and keep n^3. The degree would be 3
+
+Slope Intercept: y = mx + b
+y = The output or dependent variable (vertical axis on the graph)
+x = The input or independent variable (horizontal axis on the graph)
+m = The slope (how steep the line is)
+b = The y-intercept (where the line crosses the Y-axis)
+
+In the equation m = 4x + 1, you would shift the entire line up by 1 so that the line crosses at y: 1
+
+
+
+
+EXPONENTS AND LOGARITHMS
+________________________
+
+Exponential equation: 2^x = 16
+Logarithmic equation: Log2 16 = x
+
+Base = The number an exponent is applied to. In this case, 2 is the base for both the exponential equation and logarithmic equation
+
+To convert exponential to logarithmic, keep the base and swap the result with the exponent. In reference to 2^x = 16 and Log2 16 = x, x is the exponent and 16
+    is the result in both equations.
+
+    
+
+
+COMBINATIONS AND PERMUTATIONS
+_____________________________
+
+Order Matters: Permutations
+
+Example: ○ ○ ○   ■ ■ ■  |  In this example, we have 3 positions (squares) and 3 items (circles). We would then do...
+3 x 2 x 1 = 6
+There are 6 total possible permutations.
+
+Example: ○ ○ ○ ○   ■ ■ ■  |  In this example, we have 4 items and 3 positions. We would then do...
+4 x 3 x 2 = 24
+There are 24 total possible permutations.
+
+(Second example reference)
+To summarize, you start with the length of the items (4) and multiply, decrementing by 1 each time, and for a total of times equal to the number of positions (3).
+
+
+
+
+Repetitious Permutations
+
+Example: Password length is 5. Total number of possible characters is 26. We would then do...
+26 x 26 x 26 x 26 x 26 = 11,881,376
+(possible characters is 26 in this case because we are using each letter of the alphabet using only lowercase letters)
+
+
+
+
+Order Doesn't Matter: Combinations
+
+Example: ○ ○ ○ ○   ■ ■ ■  |  Given this, we need to calculate the permutations for the number of positions by itself and then calculate the actual permutations
+    given the amount of items.
+Position only permutations: 3 x 2 x 1 = 6
+Actual permutations: 4 x 3 x 2 = 24
+We then divide the actual permutations by the position only permutations: 24 / 6 = 4
+Combinations = 4
+
+Example 2: ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○ ○   ■ ■ ■ ■  |  Given this, we have 4 positions and 12 items. We would then do...
+Position only permutations: 4 x 3 x 2 x 1 = 24
+Actual permutations: 12 x 11 x 10 x 9 = 11,880
+Combinations = 495
+
+
+GLOSSARY
+________
+
+
+Base = The number an exponent is applied to.	
+Binary Search = An algorithm that finds items in sorted lists by repeatedly dividing the search space in half.	
+Coefficient = Any number that appears in a polynomial, either multiplied with a variable or on its own.	
+Combination	= An arrangement of items in which the order of the items does not matter.	
+Degree = The size of the exponent operating on a term. In a polynomial, degree refers to the largest exponent of all the terms.	
+Exponent = A number written over another one indicating how many times the second number is multiplied by itself.	
+Exponential Growth = Growth pattern where the output doubles or increases by a constant factor for each unit increase in input.	
+Expression = A sequence of numbers, symbols, variables, and operations that can be evaluated to get a single result.	
+Factorial = The product of all positive integers less than or equal to n, denoted as n!.	
+Function = A mathematical relationship that maps each input to exactly one output.	
+Growth Rate = How quickly a function's output increases as its input increases.	
+Linear Growth = Growth pattern where quantities increase by a constant amount in each time period.	
+Logarithm = The inverse operation of exponentiation; log_b(x) asks "to what power must b be raised to get x?"	
+Logarithmic Growth = Growth pattern that increases slowly, characteristic of efficient divide-and-conquer algorithms.	
+Permutation = An arrangement of objects where order matters.	
+Polynomial = A mathematical expression consisting of variables, coefficients, and non-negative integer exponents.	
+Polynomial Growth = Growth pattern described by polynomial functions (linear, quadratic, cubic, etc.).	
+Quadratic Growth = Growth pattern where quantities increase proportionally to the square of the input size.	
+Term = A combination of coefficients and variables, or a number on its own.	
+Variable = A letter or symbol that represents a numeric value that can change.
