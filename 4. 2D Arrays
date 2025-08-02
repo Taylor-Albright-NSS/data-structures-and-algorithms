@@ -1,0 +1,51 @@
+INTRODUCTION TO 2D ARRAYS
+_________________________
+
+2D Array is just a nested array that forms, in mathematical terms, a matrix:
+
+const 2sArray = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9], 
+]
+
+Templates/Creating matrixes:
+
+1. Example of literal notation
+const matrix = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9]
+]
+
+2. Example of creating a 3x4 matrix filled with 0s
+const rows = 3;
+const cols = 4;
+const matrix = Array.from({ length: rows }, () => Array(cols).fill(0));
+console.log(matrix)
+
+3. Example of a matrix template to create 3 rows and 3 columns where row 1 = [1, 2, 3] | row 2 = [4, 5, 6] | row 3 = [7, 8, 9]
+const rows = 3;
+const cols = 3;
+const matrix = [];
+
+for (let i = 0; i < rows; i++) {
+  matrix[i] = [];
+  for (let j = 0; j < cols; j++) {
+    matrix[i][j] = i * cols + j + 1;
+  }
+}
+console.log(matrix)
+
+Common Applications of 2D arrays:
+Game Development: Chess checkers, tile-based or grid-based games, collision detection grids
+Image processing: Scientific Computing: Pixel manipulation - Each pixel in an image can be represented as an element in a 2D array
+Scientific computing: Algebra matrices, data tables, simulation grids
+Graph Algorithms: ...
+
+
+
+
+INDEXING AND BOUNDS CHECKING IN GRIDS
+_____________________________________
+

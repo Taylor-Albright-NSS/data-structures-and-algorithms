@@ -44,7 +44,7 @@ _____________
 .slice(start, end?) = Similar to .splice(), but does not modify the original array. However, it's parameters act differently than .splice()
     If start is specified WITHOUT end, it will include all the elements in the array starting at the start index. 
         Examples: arr.slice(1) would include every element in the array excluding the element at index 0. arr.slice(2) would include every element in the array exluding the elemnts at index 0 and 1, etc
-        
+
     Usage: arr.slice(0, 4) | This would create a new array with the first 4 elements of the array it sliced. Good for limiting the size of the array if those specifications are included
 
 
@@ -87,6 +87,7 @@ class ArrayMethodSelector {
     }
 }
 
+.sort((a, b) => b.criteria - a.criteria) = This will sort by whatever key you put in for criteria
 
 
 CORE OPERATIONS: ADD, REMOVE, UPDATE, ACCESS
