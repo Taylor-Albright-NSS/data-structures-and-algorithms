@@ -1,5 +1,6 @@
-//For this exercise, you should write three functions that generate 2D arrays in different ways.
+//INTRODUCTION TO 2D ARRAYS
 
+//For this exercise, you should write three functions that generate 2D arrays in different ways.
 const createPhoneLayout = () => {
 	//TODO: Use literal notation to create a 3x3 matrix representing the placement of the numbers 1-9 on a telephone dialpad, then return that matrix
 	return [
@@ -31,10 +32,8 @@ const createCheckerboard = (width, height) => {
 	return matrix
 }
 
-print2DArray()
-
 // Utility function to print any 2D array. Note the use of the array functions .forEach and .join
-const print2DArray = (array, title) => {
+var print2DArray = (array, title) => {
 	console.log(title)
 	array.forEach(row => console.log(row.join(' ')))
 }
@@ -65,3 +64,52 @@ print2DArray(checkerboard, 'Checkerboard Pattern')
 // Create and print a grid of hearts
 const loveArray = createLoveArray(12, 6)
 print2DArray(loveArray, 'Love Array')
+
+//INDEXING AND BOUNDS CHECKING IN GRIDS
+
+//For this exercise, complete a function that demonstrates the difference between row and column traversal
+
+// Demonstrating row-wise vs column-wise traversal performance by logging the time for each
+const measureTraversalPerformance = matrix => {
+	const rows = matrix.length
+	const columns = matrix[0].length
+	console.log('----- Performance Test: -----')
+	let placeholder = 0
+
+	let startTime = Date.now()
+	//TODO: Traverse the specified matrix by rows, then by columns within each row. With each element, set placeholder to that element's value
+	for (let i = 0; i < rows; i++) {
+		for (let j = 0; j < columns; j++) {
+			placeholder = matrix[i][j]
+			console.log(placeholder)
+		}
+	}
+	let endTime = Date.now()
+	console.log(`Row-wise traversal: ${endTime - startTime}ms`)
+
+	// Column-wise traversal
+	startTime = Date.now()
+	//TODO: Traverse the specified matrix by columns, then by row within each column. With each element, set placeholder to that element's value
+	endTime = Date.now()
+	console.log(`Column-wise traversal: ${endTime - startTime}ms`)
+}
+
+// Utility function to print any 2D array. Note the use of the array functions .forEach and .join
+const print2DArray = (array, title) => {
+	console.log(title)
+	array.forEach(row => console.log(row.join(' ')))
+}
+print2DArray(
+	[
+		[1, 2],
+		[3, 4],
+		[5, 6],
+	],
+	'Tester'
+)
+
+// Demonstrate performance difference with a large matrix
+const largeMatrix = Array.from({ length: 10000 }, () => Array(10000).fill(0))
+measureTraversalPerformance(largeMatrix)
+
+//FINDING NEIGHBORS

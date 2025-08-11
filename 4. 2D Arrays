@@ -3,7 +3,7 @@ _________________________
 
 2D Array is just a nested array that forms, in mathematical terms, a matrix:
 
-const 2sArray = [
+const 2DArray = [
     [1, 2, 3],
     [4, 5, 6],
     [7, 8, 9], 
@@ -48,4 +48,142 @@ Graph Algorithms: ...
 
 INDEXING AND BOUNDS CHECKING IN GRIDS
 _____________________________________
+
+Common Bounds Checking Pattern:
+
+function isValidCell(grid, row, col) {
+  return (
+    row >= 0 &&           // Not above the grid
+    row < grid.length &&  // Not below the grid
+    col >= 0 &&           // Not left of the grid
+    col < grid[0].length  // Not right of the grid
+  );
+}
+
+// Usage example
+if (isValidCell(grid, row, col)) {
+  // Safe to access grid[row][col]
+  console.log("Found valid cell:", grid[row][col]);
+} else {
+  console.log("Oops! That position is out of bounds!");
+}
+
+Traversing 2D Arrays:
+
+Row-Major Traversal - This looks over every element in a row before moving to the next row. 
+
+function traverseRowMajor(grid) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  
+  for (let i = 0; i < rows; i++) {
+    for (let j = 0; j < cols; j++) {
+      // Process grid[i][j]
+      console.log("Visiting cell at row", i, "column", j, ":", grid[i][j]);
+    }
+  }
+}
+
+Column-Major Traversal - This looks over a single item in a row before moving to the next row, effectively traversing the grid vertically
+
+function traverseColumnMajor(grid) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  
+  for (let j = 0; j < cols; j++) {
+    for (let i = 0; i < rows; i++) {
+      // Process grid[i][j]
+      console.log("Visiting cell at row", i, "column", j, ":", grid[i][j]);
+    }
+  }
+}
+
+Handling Irregular Grids - This checks every element in each row even if rows are a different length
+
+const jaggedGrid = [
+  [1, 2, 3],      // First floor has 3 rooms
+  [4, 5],         // Second floor has 2 rooms
+  [6, 7, 8, 9]    // Third floor has 4 rooms
+];
+
+// Safe traversal of jagged array
+function traverseJagged(grid) {
+  for (let i = 0; i < grid.length; i++) {
+    for (let j = 0; j < grid[i].length; j++) {
+      console.log("Value at", i, j, ":", grid[i][j]);
+    }
+  }
+}
+
+
+
+FINDING NEIGHBORS
+_________________
+
+Step 1: Create rows, cols, and empty neighbors array
+const rows = grid.length
+const cols = grid[0].length
+const neighbors = []
+
+Step 2: Create direction arrays for row and column
+const dr = [-1, 0, 1, 0]
+const dc = [0, 1, 0, -1]
+
+Step 3: For loop and iterate 4 times and create coordinates for the newly found neighbors
+  *row and col are parameters from the main function that is not shown here*
+
+for (let i = 0; i < 4; i++) {
+  Step 4: Create the neighboring coordinates
+  //row and col are just grid.length and grid[0].length respectively. This just checks to make sure that newRow and newCol are not 
+  //less than 0 and not greater than the length of the rows array or columns array
+
+  const newRow = row + dr[i]
+  const newCol = col + dc[i]
+
+  Step 5: Check to make sure newRow and newCol are within bounds
+  if (newRow >= 0 && newRow < row && newCol >= 0 && newCol < col) {
+
+    Step 6 (optional): Check for more conditions based on what you want
+    //Now that default bounds are checked, you can add special conditions here if you want. This checks if any neighbor's value is the
+    //same as the target's value
+
+    const targetValue = grid[row][col]
+    const newValue = grid[newRow][newCol]
+
+    if (targetValue === newValue) {
+      console.log(`Neighbor has same value as target!)
+    } else {
+      console.log(`No neighbors have the same value as target`)
+    }
+  }
+}
+
+// Direction arrays for up, right, down, left
+const dr = [-1, 0, 1, 0];  // Row direction
+const dc = [0, 1, 0, -1];  // Column direction
+
+function getCardinalNeighbors(grid, row, col) {
+  const rows = grid.length;
+  const cols = grid[0].length;
+  const neighbors = [];
+  
+  for (let i = 0; i < 4; i++) {
+    const newRow = row + dr[i];
+    const newCol = col + dc[i];
+
+    //First pass
+    //row = 1 | dr[0] = -1
+    //newRow = 0
+
+    //col = 2 | dc[0] = 0
+    //newCol = 2
+    
+    // Check bounds
+    if (newRow >= 0 && newRow < rows && newCol >= 0 && newCol < cols) {
+      neighbors.push([newRow, newCol]);
+    }
+  }
+  
+  return neighbors;
+}
 
