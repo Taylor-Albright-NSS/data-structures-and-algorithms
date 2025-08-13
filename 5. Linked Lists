@@ -1,0 +1,45 @@
+Creating A Linked List
+
+1. Start by creating your node:
+class Node {
+    constructor(data) {
+        this.data = data
+        this.next = null
+        this.prev = null
+    }
+}
+
+or factory function
+
+function node(data) {
+    return {
+        data,
+        next: null,
+        prev: null
+    }
+}
+
+2. Create your linked list class or factory function
+
+class LinkedList {
+    constructor() {
+        this.head = null
+        this.tail = null
+        this.size = 0
+    }
+
+    addSongToEnd(data) {
+        const newNode = new Node(data)
+        //If there is no head node, then newNode has to become the head and it will also become the tail
+        if (!this.head) {
+            this.head = newNode
+            this.tail = newNode
+        } else {
+            let current = head
+            while (current.next) {
+                current = current.next
+            }
+            current.next = newNode
+        }
+    }
+}

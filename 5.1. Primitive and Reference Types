@@ -1,0 +1,27 @@
+Two types of data: Primitive values/types and Reference Types
+
+Primitive: string, number, boolean, null, undefined, symbol, bigint
+Reference Types: object, array, function
+
+Shallow Copy Example (Using ...):
+The spread operator ... creates a shallow copy of an object. This means that it copies the top-level properties, 
+but nested objects are still shared by reference. In the following code, lassie and laddie are two different objects, 
+but they share the same nested object for abilities.
+
+let lassie = { species: "Collie", abilities: { speaking: true } };
+let laddie = { ...lassie };
+lassie.abilities.speaking = false;
+lassie.species = "Not a Collie"
+
+console.log(laddie.abilities.speaking); === false
+console.log(laddie.species); === "Collie"
+
+While laddie is a shallow copy, it has its own immediate properties, so laddie's species remains "Collie" even after the
+reassignment of laddie.species = "Not a Collie". But, because it's a shallow copy, it still references lassie's 
+nested properties abilities: { speaking: false } (it's false here after the reassignment on line 13)
+
+Deep Copy Example (Using structuredClone)
+let product1 = { name: "Balloon", price: 2.5, details: { color: "red", size: "large" } };
+let product2 = structuredClone(product1); // Deep copy
+product1.details.color = "blue";          // Change the original object
+console.log(product2.details.color);      // Is this still red on the copy?
