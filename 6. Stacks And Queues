@@ -26,6 +26,8 @@ class Stack {
 	}
 }
 
+Must start with a queue class that contains methods for the queue operations: enqueue, dequeue, peek, isEmpty, size
+Here is a good deafult queue example:
 
 QUEUES
 class Queue {
