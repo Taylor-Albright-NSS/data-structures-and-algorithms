@@ -1,0 +1,52 @@
+INTRODUCTION TO STACKS - THE BOOK RETURN SYSTEM
+
+Must start with a stack class that contains methods for the stack operations: push, pop, peek, isEmpty, size
+Here is a good deafult stack example:
+
+class Stack {
+	constructor() {
+		this.items = []
+	}
+	push(item) {
+		this.items.push(item)
+	}
+	pop() {
+		if (this.isEmpty()) throw new Error('Stack is empty - cannot pop')
+		return this.items.pop()
+	}
+	peek() {
+		if (this.isEmpty()) throw new Error('Stack is empty - cannot peek')
+		return this.items[this.items.length - 1]
+	}
+	isEmpty() {
+		return this.items.length === 0
+	}
+	size() {
+		return this.items.length
+	}
+}
+
+
+QUEUES
+class Queue {
+	constructor() {
+		this.items = []
+	}
+	enqueue(item) {
+		this.items.push(item)
+	}
+	dequeue() {
+		if (this.isEmpty()) throw new Error('Queue is empty - cannot dequeue')
+		return this.items.shift()
+	}
+	peek() {
+		if (this.isEmpty()) throw new Error('Queue is empty - cannot peek')
+		return this.items[0]
+	}
+	isEmpty() {
+		return this.items.length === 0
+	}
+	size() {
+		return this.items.length
+	}
+}
