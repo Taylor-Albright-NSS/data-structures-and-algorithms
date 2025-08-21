@@ -1,3 +1,4 @@
+//INTRODUCTION TO STACKS
 // ⏱️ Alex's First Challenge!
 // 🔓 Uncomment the below code section and implement the required logic:
 class Stack {
@@ -25,23 +26,12 @@ class Stack {
 const returnCart = new Stack()
 returnCart.items = ['test', 'test2', 'test3', 'test4']
 
-/*
-Problem: Using Stack Operations to Process Library Returns
-
-Maya has provided you with a Stack class to help process returned books.
-Your job is to USE the stack operations to solve real library problems!
-
-Available Stack Operations:
-- stack.push(item): Add a book to the top of the return cart
-- stack.pop(): Remove and return the top book from the cart
-- stack.peek(): Look at the top book without removing it
-- stack.isEmpty(): Check if the cart is empty
-- stack.size(): Get the number of books in the cart
-
-Complete the functions below to help Alex process library returns!
-*/
-
-// The Stack class is (already implemented for you!)
+// Available Stack Operations:
+// - stack.push(item): Add a book to the top of the return cart
+// - stack.pop(): Remove and return the top book from the cart
+// - stack.peek(): Look at the top book without removing it
+// - stack.isEmpty(): Check if the cart is empty
+// - stack.size(): Get the number of books in the cart
 
 // ⏱️ Alex's First Challenge!
 // 🔓 Uncomment the below code section and implement the required logic:
@@ -222,4 +212,102 @@ function processUntilTargetPatron(holdQueue, targetPatron) {
 	// Hint: Keep dequeuing and checking each patron
 
 	return servedPatrons
+}
+
+//IMPLEMENT A STACK CLASS
+// Complete the Stack implementation below
+// You need to implement the missing methods to make the tests pass
+
+class Stack {
+	constructor() {
+		this.items = []
+	}
+
+	// TODO: Implement push method
+	// Add an item to the top of the stack
+	push(item) {
+		// Your code here
+		this.items.push(item)
+	}
+
+	// TODO: Implement pop method
+	// Remove and return the top item from the stack
+	// Throw an error if stack is empty
+	pop() {
+		// Your code here
+		if (this.isEmpty()) throw new Error(`Cannot peek at empty stack`)
+		return this.items.pop()
+	}
+
+	// TODO: Implement peek method
+	// Return the top item without removing it
+	// Throw an error if stack is empty
+	peek() {
+		// Your code here
+		if (this.isEmpty()) throw new Error(`Cannot peek at empty stack`)
+		return this.items[this.size() - 1]
+	}
+
+	// TODO: Implement isEmpty method
+	// Return true if stack is empty, false otherwise
+	isEmpty() {
+		// Your code here
+		return this.items.length === 0
+	}
+
+	// TODO: Implement size method
+	// Return the number of items in the stack
+	size() {
+		// Your code here
+		return this.items.length
+	}
+}
+
+//IMPLEMENT A QUEUE CLASS
+
+// Complete the Queue implementation below
+// You need to implement the missing methods to make the tests pass
+class Queue {
+	constructor() {
+		this.items = []
+	}
+
+	// TODO: Implement enqueue method
+	// Add an item to the back of the queue
+	enqueue(item) {
+		// Your code here
+		this.items.push(item)
+	}
+
+	// TODO: Implement dequeue method
+	// Remove and return the front item from the queue
+	// Return null if queue is empty
+	dequeue() {
+		// Your code here
+		if (this.isEmpty()) return null
+		return this.items.shift()
+	}
+
+	// TODO: Implement peek method
+	// Return the front item without removing it
+	// Return null if queue is empty
+	peek() {
+		// Your code here
+		if (this.isEmpty()) return null
+		return this.items[0]
+	}
+
+	// TODO: Implement isEmpty method
+	// Return true if queue is empty, false otherwise
+	isEmpty() {
+		// Your code here
+		return this.items.length === 0
+	}
+
+	// TODO: Implement size method
+	// Return the number of items in the queue
+	size() {
+		// Your code here
+		return this.items.length
+	}
 }

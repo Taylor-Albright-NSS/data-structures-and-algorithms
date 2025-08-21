@@ -142,3 +142,6 @@ class LinkedListQueue {
 }
 
 
+Queues: Linked lists are a good way to track a queue
+
+CircularQueue: Very efficient, but it has a fixed capacity. You cannot grow or shrink it.
