@@ -1,0 +1,19 @@
+INTRODUCTION TO MAPS - THE PATIENT RECORDS SYSTEM
+
+Map operations: map.set(), map.get(), map.has(), map.delete(), map.clear()
+Other map operations: map.keys(), map.values(), map.entries(), map.size
+
+Maps contain key/value pairs. Both key and value CAN be any data type. The examples below are just a few
+examples of mixing and matching the datatypes of a map.
+
+Declaring a map: const myMap = new Map()
+
+myMap.set(1, 'string type') //integer key, string value
+myMap.set('2', {name: 'Gordox The Gallant, type: 'Object'}) //string key, object value
+myMap.set(true, ['arrays', 'work', 'too']) //boolean key, array value
+
+myMap.get(1) //Retrieves the corresponding value of the key of 1 which would be 'string type' if looking at the above example
+myMap.get(2) //Retrieves the corresponding value of the key of 2 which would be the object {name: 'Gordox The Gallant, type: 'Object'} if looking at the above example
+
+myMap.has(1) //Returns true/false based on if the entry 1 exists
+myMap.delete(1) //Deletes an entry
