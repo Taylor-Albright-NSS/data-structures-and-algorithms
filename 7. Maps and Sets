@@ -17,3 +17,11 @@ myMap.get(2) //Retrieves the corresponding value of the key of 2 which would be 
 
 myMap.has(1) //Returns true/false based on if the entry 1 exists
 myMap.delete(1) //Deletes an entry
+
+
+
+
+INTRODUCTION TO SETS - THE PATIENT ALLERGY TRACKING SYSTEM
+
+A Set in JavaScript is a data structure a collection of unique values—no duplicates are allowed—and values can be of any type.
+
