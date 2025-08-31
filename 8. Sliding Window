@@ -1,0 +1,89 @@
+SLIDING WINDOW
+
+There are 2 forms of sliding window: fixed and variable
+
+Fixed window example template
+
+INEFFICIENT
+function calculateSMA(prices, period) {
+	const result = []
+
+    First loop:
+    1st for (let i = period - 1; i < prices.length; i++)
+    2nd for (let j = i - period + 1; j <= i; j++)
+
+	for (let i = period - 1; i < prices.length; i++) {
+		let sum = 0
+
+		for (let j = i - period + 1; j <= i; j++) {
+			//i = 6              i < 13             i++ | RIGHT WINDOW
+			//j = 0  (6 - 7 + 1)   j <= 6             j++ | LEFT
+
+			//[!2!, 44, 4, 5, 33, 6, !11!, 2, 44, 3, 2, 11, 9] | STARTING WINDOW
+			//[ 2, !44!, 4, 5, 33, 6, !11!, 2, 44, 3, 2, 11, 9] | NEXT ITERATION
+			//[ 2, 44, !4!, 5, 33, 6, !11!, 2, 44, 3, 2, 11, 9] | NEXT ITERATION
+
+			//i = 13              i < 13             i++ | RIGHT WINDOW
+			//j = 7  (13 - 7 + 1)   j <= 6             j++ | LEFT
+
+			//[!2!, 44, 4, 5, 33, 6, !11!, 2, 44, 3, 2, 11, 9] | STARTING WINDOW
+			console.log(i, j)
+			sum += prices[j]
+		}
+		result.push(sum / period)
+	}
+	return result
+}
+calculateSMA([2, 44, 4, 5, 33, 6, 11, 2, 44, 3, 2, 11, 9], 7)
+
+EFFICIENT 
+function calculateSMA(prices, period) {
+  if (prices.length < period) return [];
+  
+  const smaValues = [];
+  
+  // Calculate sum of first window
+  let windowSum = 0;
+  for (let i = 0; i < period; i++) {
+    windowSum += prices[i];
+  }
+  
+  // Add first SMA value
+  smaValues.push(Number((windowSum / period).toFixed(1)));
+  
+  // Slide window through remaining data
+  for (let i = period; i < prices.length; i++) {
+    // Remove oldest price, add newest price
+    windowSum = windowSum - prices[i - period] + prices[i];
+    smaValues.push(Number((windowSum / period).toFixed(1)));
+  }
+  
+  return smaValues;
+}
+
+Breakdown:
+  1. Defensive code
+    if (prices.length < period) return [];
+
+    If prices.length is less than period, that means there wouldn't be enough prices
+    in the list to fill the sliding window. If prices.length = 3 and period = 4, it would essentially 
+    look like [3, 8, 3, undefined]
+
+
+  2. Calculate sum of first window
+    let windowSum = 0;
+    for (let i = 0; i < period; i++) {
+        windowSum += prices[i];
+    }
+
+  3. Add first SMA value
+    smaValues.push(Number((windowSum / period).toFixed(1)));
+
+  4. Slide window through remaining data
+  for (let i = period; i < prices.length; i++) {
+    // Subtract the number that's leaving the window, and add the new number that's entering
+    // In this case, we're subtracting prices[i - period] which is prices[0] on the first iteration
+    // We then add to the end of the window the new value prices[i] which is prices[period] on the first iteration
+    windowSum = windowSum - prices[i - period] + prices[i];
+    smaValues.push(Number((windowSum / period).toFixed(1)));
+  }

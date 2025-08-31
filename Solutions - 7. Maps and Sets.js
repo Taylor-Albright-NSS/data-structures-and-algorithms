@@ -155,3 +155,164 @@ function isMedicationSafe(patientAllergies, medicationIngredients) {
 	}
 	return noAllergies // Replace with actual implementation
 }
+
+//REAL-WORLD APPLICATIONS - THE EMERGENCY RESPONSE SYSTEM
+/*
+Problem: Emergency Dispatch System - Real-World Map and Set Applications
+
+Elena has shown you how Maps and Sets power emergency dispatch systems.
+Your job is to implement the core functionality that keeps communities safe!
+
+Available Operations:
+Maps: set(), get(), has(), delete(), size, clear()
+Sets: add(), has(), delete(), size, clear()
+
+Complete the functions below to help Jake manage emergency operations!
+*/
+
+// ⏱️ Jake's First Challenge!
+// 🔓 Uncomment the below code section and implement the required logic:
+
+function recordEmergencyCall(emergencyTracker, emergencyType) {
+	// Track frequency of different emergency types
+	// Use Map operations to count how many times each type occurs
+
+	// TODO: Implement frequency counting using Map operations
+	// Hint: Check if emergencyType exists, then increment or set to 1
+	if (emergencyTracker.has(emergencyType)) {
+		emergencyTracker.set(emergencyType, emergencyTracker.get(emergencyType) + 1)
+	} else {
+		emergencyTracker.set(emergencyType, 1)
+	}
+	console.log(`Recorded ${emergencyType} emergency call`)
+}
+
+function getEmergencyStats(emergencyTracker) {
+	// Return statistics about emergency call frequencies
+	// Return an object with type and count for each emergency type
+
+	const stats = []
+
+	// TODO: Convert Map entries to array of {type, count} objects
+	// Hint: Use for...of loop with emergencyTracker entries
+	for (const [type, count] of emergencyTracker) {
+		stats.push({ type, count })
+	}
+	return stats.sort((a, b) => b.count - a.count) // Sort by frequency
+}
+
+// ⏱️ Jake's Second Challenge!
+// 🔓 Uncomment the below code section and implement the required logic:
+
+function contactHospital(hospitalContacts, hospitalName, currentTime) {
+	const timeWindow = 600000 // 10 minutes in milliseconds
+	if (hospitalContacts.has(hospitalName)) {
+		const lastContact = hospitalContacts.get(hospitalName)
+		if (currentTime - lastContact < timeWindow) {
+			return false
+		}
+	}
+	hospitalContacts.set(hospitalName, currentTime)
+	return true
+}
+
+function getRecentContacts(hospitalContacts, currentTime) {
+	// Get list of hospitals contacted in the last 10 minutes
+	// Return array of hospital names
+
+	const timeWindow = 600000 // 10 minutes
+	const recentContacts = []
+
+	// TODO: Filter contacts by time window
+	// Hint: Check timestamp difference for each contact
+	for (const [hospital, time] of hospitalContacts) {
+		if (currentTime - time < timeWindow) {
+			recentContacts.push(hospital)
+		}
+	}
+	return recentContacts
+}
+
+// ⏱️ Jake's Third Challenge!
+// 🔓 Uncomment the below code section and implement the required logic:
+
+function assignEquipment(equipmentAssignments, equipmentUsage, unitId, equipmentType) {
+	// Assign equipment to a unit and track usage
+	// Prevent duplicate assignments of the same equipment
+
+	// TODO: Check if equipment is already assigned
+	// If not assigned, assign to unit and increment usage count
+	// Return true if successful, false if already assigned
+	if (equipmentAssignments.has(equipmentType)) {
+		return false
+	}
+	equipmentAssignments.add(equipmentType)
+	if (equipmentUsage.has(equipmentType)) {
+		equipmentUsage.set(equipmentType, equipmentUsage.get(equipmentType) + 1)
+	} else {
+		equipmentUsage.set(equipmentType, 1)
+	}
+	return true
+}
+
+function getAvailableEquipment(equipmentAssignments, allEquipment) {
+	// Find equipment that is not currently assigned
+	// allEquipment is an array of all equipment types
+	// Return array of available equipment
+
+	const available = []
+	for (const equipment of allEquipment) {
+		if (!equipmentAssignments.has(equipment)) {
+			available.push(equipment)
+		}
+	}
+	// TODO: Find equipment not in assignments
+	// Hint: Check if each equipment type is in the assignments Set
+
+	return available
+}
+
+function getEquipmentUsageStats(equipmentUsage) {
+	// Get usage statistics for all equipment types
+	// Return array of {equipment, usageCount} objects sorted by usage
+
+	const stats = []
+
+	// TODO: Convert usage Map to stats array
+	// Hint: Similar to getEmergencyStats but for equipment
+	for (const [equipment, usageCount] of equipmentUsage) {
+		stats.push({ equipment, usageCount })
+	}
+	return stats.sort((a, b) => b.usageCount - a.usageCount)
+}
+
+//MODULE 7 - CODE EXERCISE 2 SOLUTION
+function firstUniqChar(s) {
+	// Approach: Use a Map to count character frequencies
+	// First pass: count all characters
+	// Second pass: find first character with count = 1
+
+	// Your code here
+	const charFrequency = new Map()
+	const splitS = s.split('')
+	for (let i = 0; i < splitS.length; i++) {
+		const letter = splitS[i]
+		if (charFrequency.has(letter)) {
+			charFrequency.set(letter, charFrequency.get(letter) + 1)
+		} else {
+			charFrequency.set(letter, 1)
+		}
+	}
+
+	for (const [letter, value] of charFrequency) {
+		console.log(letter, value)
+		if (value === 1) {
+			console.log(splitS, ' splitS')
+			const index = splitS.indexOf(letter)
+			console.log(index)
+			return index
+		}
+	}
+}
+
+firstUniqChar('loveleetcode')

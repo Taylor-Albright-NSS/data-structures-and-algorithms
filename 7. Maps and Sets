@@ -18,10 +18,140 @@ myMap.get(2) //Retrieves the corresponding value of the key of 2 which would be 
 myMap.has(1) //Returns true/false based on if the entry 1 exists
 myMap.delete(1) //Deletes an entry
 
-
+keys must be strings
 
 
 INTRODUCTION TO SETS - THE PATIENT ALLERGY TRACKING SYSTEM
 
 A Set in JavaScript is a data structure a collection of unique values—no duplicates are allowed—and values can be of any type.
+set.add()
+set.has()
+set.delete()
+set.size()
+set.clear()
 
+REAL-WORLD APPLICATIONS - THE EMERGENCY RESPONSE SYSTEM
+
+Counting:
+1. If it .has it
+2. .set() it by incidentCounts.set(neighborhood, incidentCounts.get(neighborhood) + 1)
+3. or if .has() return evaluates to false do incidentCounts.set(neighborhood, 1) to set it to 1
+
+EXAMPLE FUNCTION
+function recordIncident(neighborhood, hour, incidentType) {
+    if (this.incidentCounts.has(neighborhood)) {
+        this.incidentCounts.set(neighborhood, this.incidentCounts.get(neighborhood) + 1);
+    } else {
+        this.incidentCounts.set(neighborhood, 1);
+    }
+}
+
+Hourly Patterns
+1. create an empty array: const hotspots = []
+2. for loop over the map: 
+    for (const [neighborhood, count] of incidentCounts) {
+        if (count > 10) {
+            hotspots.push({neighborhood, count})
+        }
+    }
+
+EXAMPLE FUNCTION
+getHotspots() {
+    // Find neighborhoods with highest incident counts
+    const hotspots = [];
+    for (const [neighborhood, count] of this.incidentCounts) {
+      if (count > 10) { // Threshold for hotspot
+        hotspots.push({ neighborhood, count });
+      }
+    }
+    return hotspots.sort((a, b) => b.count - a.count);
+  }
+
+1. create an empty array: const peakHours = []
+2. Iterate with a for loop:
+    for (const [hourKey, count] of hourlyPatterns) {
+        const [hour, type] = hourKey.split(':')
+        if (type === incidentType) {
+            peakHours.push({hour: parseInt(hour), count})
+        }
+    }
+3. return sorted peakHours by count: 
+    return peakHours.sort((a, b) => b.count - a.count)
+
+EXAMPLE FUNCTION
+getPeakHours(incidentType) {
+    const peakHours = [];
+        for (const [hourKey, count] of this.hourlyPatterns) {
+            const [hour, type] = hourKey.split(':');
+            if (type === incidentType) {
+            peakHours.push({ hour: parseInt(hour), count });
+            }
+        }
+    return peakHours.sort((a, b) => b.count - a.count);
+}
+
+HASH TABLES (under the hood of a Map)
+
+Creating a custom Map:
+
+class CustomHashMap {
+    constructor(initialCapacity = 16, loadFactor = 0.75) {
+        this.buckets = new Array(initialCapacity)
+        this.loadFactor = loadFactor
+        this.size = 0
+        this.capacity = initialCapacity
+    }
+}
+
+HASH METHOD
+
+hash(key) {
+    const stringKey = String(key);
+    let hash = 0;
+    for (let i = 0; i < stringKey.length; i++) {
+        hash = (hash * 31 + stringKey.charCodeAt(i)) % this.capacity
+    }
+    return hash;
+}
+
+SET METHOD
+
+  set(key, value) {
+    const index = this.hash(key);
+    
+    if (!this.buckets[index]) {
+      this.buckets[index] = [];
+    }
+    
+    // Check if key already exists
+    for (let i = 0; i < this.buckets[index].length; i++) {
+      if (this.buckets[index][i].key === key) {
+        this.buckets[index][i].value = value;
+        return;
+      }
+    }
+    
+    // Key doesn't exist, add new entry
+    this.buckets[index].push({ key, value });
+    this.size++;
+    
+    console.log(`Set ${key} at index ${index}`);
+  }
+
+GET METHOD
+
+  get(key) {
+    const index = this.hash(key);
+    
+    if (!this.buckets[index]) {
+      return undefined;
+    }
+    
+    for (const entry of this.buckets[index]) {
+      if (entry.key === key) {
+        return entry.value;
+      }
+    }
+    
+    return undefined;
+  }
