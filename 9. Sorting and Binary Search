@@ -1,0 +1,168 @@
+// Bubble sort for album titles
+function bubbleSortAlbums(albums) {
+  const n = albums.length;
+  console.log("Starting bubble sort of record collection...");
+  
+  for (let i = 0; i < n; i++) {
+    let swapped = false;
+    console.log(`Pass ${i + 1}:`);
+    
+    for (let j = 0; j < n - i - 1; j++) {
+      // Compare adjacent albums alphabetically
+      if (albums[j] > albums[j + 1]) {
+        console.log(`  Swapping "${albums[j]}" with "${albums[j + 1]}"`);
+        [albums[j], albums[j + 1]] = [albums[j + 1], albums[j]];
+        swapped = true;
+      }
+    }
+    
+    if (!swapped) {
+      console.log("  No swaps needed - collection is sorted!");
+      break;
+    }
+  }
+  
+  return albums;
+}
+
+// Selection sort for album titles
+function selectionSortAlbums(albums) {
+  const n = albums.length;
+  console.log("Starting selection sort of record collection...");
+  
+  for (let i = 0; i < n - 1; i++) {
+    let minIndex = i;
+    console.log(`Looking for the album that should be in position ${i + 1}...`);
+    
+    // Find the alphabetically earliest album in the remaining unsorted portion
+    for (let j = i + 1; j < n; j++) {
+      if (albums[j] < albums[minIndex]) {
+        minIndex = j;
+      }
+    }
+    
+    // Swap if we found a different minimum
+    if (minIndex !== i) {
+      console.log(`  Found "${albums[minIndex]}" - moving to position ${i + 1}`);
+      [albums[i], albums[minIndex]] = [albums[minIndex], albums[i]];
+    }
+  }
+  
+  return albums;
+}
+
+// Merge sort
+function mergeSortAlbums(albums) {
+  if (albums.length <= 1) {
+    return albums;
+  }
+  
+  // Create a copy to avoid modifying the original array
+  let result = [...albums];
+  const n = result.length;
+  
+  console.log(`Starting iterative merge sort of ${n} albums...`);
+  
+  // Start with subarrays of size 1, then 2, 4, 8, etc.
+  for (let size = 1; size < n; size *= 2) {
+    console.log(`Merging subarrays of size ${size}...`);
+    
+    // Merge adjacent subarrays of current size
+    for (let start = 0; start < n; start += size * 2) {
+      const mid = Math.min(start + size, n);
+      const end = Math.min(start + size * 2, n);
+      
+      // Only merge if we have both left and right parts
+      if (mid < end) {
+        const left = result.slice(start, mid);
+        const right = result.slice(mid, end);
+        const merged = mergeAlbums(left, right);
+        
+        // Copy merged result back to the main array
+        for (let i = 0; i < merged.length; i++) {
+          result[start + i] = merged[i];
+        }
+      }
+    }
+  }
+  
+  console.log("Iterative merge sort complete!");
+  return result;
+}
+
+function mergeAlbums(left, right) {
+  let result = [];
+  let leftIndex = 0;
+  let rightIndex = 0;
+  
+  console.log(`Merging ${left.length} and ${right.length} sorted albums...`);
+  
+  // Compare and merge
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] <= right[rightIndex]) {
+      result.push(left[leftIndex]);
+      leftIndex++;
+    } else {
+      result.push(right[rightIndex]);
+      rightIndex++;
+    }
+  }
+  
+  // Add remaining albums
+  result.push(...left.slice(leftIndex));
+  result.push(...right.slice(rightIndex));
+  
+  return result;
+}
+
+Advanced Sorting: Multiple Criteria
+
+// Sort by artist, then by release year within each artist
+function sortByArtistThenYear(collection) {
+  return collection.sort((a, b) => {
+    // First, compare by artist
+    const artistComparison = a.artist.localeCompare(b.artist);
+    if (artistComparison !== 0) {
+      return artistComparison; // Artists are different, use artist order
+    }
+    
+    // Artists are the same, so compare by release year
+    return a.releaseYear - b.releaseYear;
+  });
+}
+
+// Sort by price range, then by condition within each price range
+function sortByPriceThenCondition(collection) {
+  const conditionOrder = { "mint": 1, "very good": 2, "good": 3, "fair": 4 };
+  
+  return collection.sort((a, b) => {
+    // First, compare by price
+    const priceComparison = a.price - b.price;
+    if (priceComparison !== 0) {
+      return priceComparison;
+    }
+    
+    // Prices are the same, so compare by condition
+    return conditionOrder[a.condition] - conditionOrder[b.condition];
+  });
+}
+
+Handling Missing Data
+
+const incompleteRecords = [
+  { title: "Unknown Album", artist: "Mystery Artist", releaseYear: null },
+  { title: "Abbey Road", artist: "The Beatles", releaseYear: 1969 }
+];
+
+// Safe sorting that handles missing years
+function sortByYearSafely(collection) {
+  return collection.sort((a, b) => {
+    // Put records with missing years at the end
+    if (a.releaseYear === null) return 1;
+    if (b.releaseYear === null) return -1;
+    return a.releaseYear - b.releaseYear;
+  });
+}
+
+-1 put first element (a) before second (b)
+1 put first element (a) after second (b)
